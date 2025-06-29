@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 
 from datetime import timedelta
-import environ
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,7 +21,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Load environment variables
 
-env = environ.Env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -31,10 +29,10 @@ env = environ.Env()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = env("DEBUG")
-SECRET_KEY = env("SECRET_KEY")
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
-print(ALLOWED_HOSTS)
+DEBUG =os.getenv("DEBUG")
+SECRET_KEY = os.getenv("SECRET_KEY")
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS")
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -155,7 +153,7 @@ WSGI_APPLICATION = "src.wsgi.application"
 
 # Database configuration from env
 DATABASES = {
-    'default': env.db('DATABASE_URL'),
+    'default': os.getenv('DATABASE_URL'),
 }
 
 AUTH_USER_MODEL = "accounts.User"
