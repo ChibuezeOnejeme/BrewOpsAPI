@@ -14,14 +14,19 @@ from pathlib import Path
 
 from datetime import timedelta
 import os
+
+import dj_database_url
 import environ
 
 env = environ.Env()
 environ.Env.read_env()
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 # Load environment variables
 
@@ -160,13 +165,19 @@ WSGI_APPLICATION = "src.wsgi.application"
 # }
 
 # Database configuration from env
+# db_url = os.environ.get("DATABASE_URL")
+
+# if not db_url:
+#     raise Exception("DATABASE_URL is not set in environment variables")
+
+# DATABASES = {
+#     "default": dj_database_url.parse(db_url, conn_max_age=600)
+# }
+
+
 DATABASES = {
-    'default': os.getenv("DATABASE_URL")
-
+    "default": env.db(),  # This auto-picks DATABASE_URL
 }
-
-
-
 AUTH_USER_MODEL = "accounts.User"
 
 # Password validation
