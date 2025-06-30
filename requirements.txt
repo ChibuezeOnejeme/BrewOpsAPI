@@ -20,6 +20,7 @@ Django==5.2.1
 django-cloudinary-storage==0.3.0
 django-filter==25.1
 djangorestframework==3.16.0
+djangorestframework_simplejwt==5.5.0
 drf-yasg==1.21.10
 entrypoints==0.4
 fastjsonschema==2.16.2
@@ -70,6 +71,7 @@ pyee==8.2.2
 Pygments==2.13.0
 pyinstaller==6.13.0
 pyinstaller-hooks-contrib==2025.4
+PyJWT==2.9.0
 pyparsing==3.0.9
 PyPDF2==2.11.2
 pyppeteer==1.0.2

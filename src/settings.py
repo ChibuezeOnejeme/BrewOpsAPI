@@ -46,7 +46,7 @@ INSTALLED_APPS = [
      # third-party apps
     "rest_framework",
     "rest_framework.authtoken",
-    "django_filter",
+    "django_filters",
     "drf_yasg",
     "cloudinary",
     "cloudinary_storage",
