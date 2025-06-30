@@ -29,11 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 SECRET_KEY = os.getenv("SECRET_KEY", "your-fallback-secret-key-for-development")
 
-ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1", 
-    ".railway.app",
-]
+ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
@@ -140,47 +136,18 @@ WSGI_APPLICATION = "src.wsgi.application"
 #     }
 # }
 
-
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": env("DB_NAME"),
-#         "USER": env("DB_USER"),
-#         "PASSWORD": env("DB_PASSWORD"),
-#         "HOST": env("DB_HOST"),
-#         "PORT": env("DB_PORT"),
-#     }
-# }
-
-# Database configuration from env
-# db_url = os.environ.get("DATABASE_URL")
-
-# if not db_url:
-#     raise Exception("DATABASE_URL is not set in environment variables")
-
-# DATABASES = {
-#     "default": dj_database_url.parse(db_url, conn_max_age=600)
-# }
-
-
-# DATABASES = {
-#     "default": env.db(),  # This auto-picks DATABASE_URL
-
-
-# Check if DATABASE_URL exists
-if os.environ.get('DATABASE_URL'):
-    DATABASES = {
-        "default": env.db()
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ["PGDATABASE"],
+        'USER': os.environ["PGUSER"],
+        'PASSWORD': os.environ["PGPASSWORD"],
+        'HOST': os.environ["PGHOST"],
+        'PORT': os.environ["PGPORT"],
     }
-else:
-    # Fallback to SQLite for local development
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-# }
+}
+
+
 AUTH_USER_MODEL = "accounts.User"
 
 # Password validation
