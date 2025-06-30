@@ -14,6 +14,7 @@ from pathlib import Path
 
 from datetime import timedelta
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,10 +30,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG =os.getenv("DEBUG")
-SECRET_KEY = os.getenv("SECRET_KEY")
-ALLOWED_HOSTS = ["*"]
+DEBUG = os.getenv("DEBUG", "False").lower() == "true"
+SECRET_KEY = os.getenv("SECRET_KEY", "your-fallback-secret-key-for-development")
 
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1", 
+    ".railway.app",
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -153,9 +158,8 @@ WSGI_APPLICATION = "src.wsgi.application"
 
 # Database configuration from env
 DATABASES = {
-    'default': os.getenv('DATABASE_URL'),
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
-
 AUTH_USER_MODEL = "accounts.User"
 
 # Password validation
