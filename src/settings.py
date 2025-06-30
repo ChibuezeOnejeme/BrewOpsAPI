@@ -4,9 +4,7 @@ from pathlib import Path
 
 from datetime import timedelta
 import os
-import environ
 
-env = environ.Env()
 
 
 
@@ -146,6 +144,7 @@ DATABASES = {
         'PORT': os.environ["PGPORT"],
     }
 }
+
 
 
 AUTH_USER_MODEL = "accounts.User"
