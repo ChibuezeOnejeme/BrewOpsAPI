@@ -161,7 +161,7 @@ WSGI_APPLICATION = "src.wsgi.application"
 
 # Database configuration from env
 DATABASES = {
-    'default': env.db("DATABASE_URL")
+    'default': os.getenv("DATABASE_URL")
 
 }
 
