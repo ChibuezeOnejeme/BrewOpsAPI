@@ -29,11 +29,11 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Snippets API",
+        title="BrewsOps API",
         default_version="v1",
-        description="Test description",
-        terms_of_service="https://www.google.com/policies/terms/",
-        contact=openapi.Contact(email="contact@snippets.local"),
+        description="BrewOps API is a RESTful backend built with Django for managing operations in an FMCG supply chain, tailored for an alcoholic beverage company. It handles authentication, brands, products, stock, sales, and reporting,and is hosted on Railway.",
+        terms_of_service="https://github.com/ChibuezeOnejeme/BrewOpsApi",
+        contact=openapi.Contact(email="onejemechibueze@gmail.com"),
         license=openapi.License(name="BSD License"),
     ),
     public=True,
