@@ -172,22 +172,30 @@ WSGI_APPLICATION = "src.wsgi.application"
 
 # Set default values for the environment variables if they’re not already set
 # Default to SQLite for local development
-DATABASES = {
+
+
+# Make sure this is configured correctly for Railway
+if 'RAILWAY_ENVIRONMENT' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.environ['DATABASE_URL'],
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
+    }
+    print(f"Railway DB URL: {os.environ.get('DATABASE_URL')}")  # Debug print
+else:
+    # Local database settings
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
-# Override with Railway PostgreSQL if available
-if 'DATABASE_URL' in os.environ:
-    DATABASES = {
-        'default': dj_database_url.parse(
-            os.environ['DATABASE_URL'],
-            conn_max_age=600,
-            conn_health_checks=True,
-        )
-    }
+
+
+
 AUTH_USER_MODEL = "accounts.User"
 
 # Password validation
