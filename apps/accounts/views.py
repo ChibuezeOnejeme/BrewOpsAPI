@@ -14,6 +14,7 @@ from .tokens import create_jwt_pair_for_user
 
 class SignUpView(generics.GenericAPIView):
     serializer_class = SignUpSerializer
+    authentication_classes = []
     permission_classes = []
 
     def post(self, request: Request):
@@ -32,6 +33,7 @@ class SignUpView(generics.GenericAPIView):
 
 
 class LoginView(APIView):
+    authentication_classes = []
     permission_classes = []
 
     @swagger_auto_schema(request_body=LoginSerializer, responses={200: "OK", 400: "Invalid email or password"})
