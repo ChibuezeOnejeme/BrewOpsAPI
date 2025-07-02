@@ -178,12 +178,12 @@ WSGI_APPLICATION = "src.wsgi.application"
 if 'RAILWAY_ENVIRONMENT' in os.environ:
     DATABASES = {
         'default': dj_database_url.config(
-            default=os.environ['DATABASE_URL'],
+            default=os.environ['DATABASE_PUBLIC_URL'],
             conn_max_age=600,
             conn_health_checks=True,
         )
     }
-    print(f"Railway DB URL: {os.environ.get('DATABASE_URL')}")  # Debug print
+    print(f"Railway DB URL: {os.environ.get('DATABASE_PUBLIC_URL')}")  # Debug print
 else:
     # Local database settings
     DATABASES = {
